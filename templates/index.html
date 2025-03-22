@@ -1,0 +1,188 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Job Portal{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="hero-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="display-4">Find Your Dream Job Today</h1>
+                <p class="lead">Connect with top companies and opportunities that match your skills and aspirations.</p>
+                <form class="search-form mb-4">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search jobs, companies, or keywords...">
+                        <button class="btn" type="submit">
+                            <i class="bi bi-search"></i> Search Jobs
+                        </button>
+                    </div>
+                </form>
+                <div class="popular-searches">
+                    <span class="text-white-50 me-2">Popular:</span>
+                    <a href="#" class="badge bg-white text-primary me-2">Remote</a>
+                    <a href="#" class="badge bg-white text-primary me-2">Full-time</a>
+                    <a href="#" class="badge bg-white text-primary">Tech</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Job Categories -->
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">Explore Job Categories</h2>
+            <p class="text-muted">Find the perfect role in your desired industry</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-3">
+                <div class="card h-100 text-center category-card">
+                    <div class="card-body">
+                        <img src="{{ url_for('static', filename='img/icons/Tech.png') }}" alt="Tech Jobs" class="category-icon mb-3">
+                        <h5 class="card-title">Technology</h5>
+                        <p class="card-text text-muted">Software, IT, Data Science</p>
+                        <a href="{{ url_for('jobs_by_category', category='tech') }}" class="btn btn-outline-primary">
+                            Browse Jobs <i class="bi bi-arrow-right ms-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card h-100 text-center category-card">
+                    <div class="card-body">
+                        <img src="{{ url_for('static', filename='img/icons/marketing.png') }}" alt="Marketing Jobs" class="category-icon mb-3">
+                        <h5 class="card-title">Marketing</h5>
+                        <p class="card-text text-muted">Digital, Brand, Content</p>
+                        <a href="{{ url_for('jobs_by_category', category='marketing') }}" class="btn btn-outline-primary">
+                            Browse Jobs <i class="bi bi-arrow-right ms-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card h-100 text-center category-card">
+                    <div class="card-body">
+                        <img src="{{ url_for('static', filename='img/icons/sales.png') }}" alt="Sales Jobs" class="category-icon mb-3">
+                        <h5 class="card-title">Sales</h5>
+                        <p class="card-text text-muted">Business Development, Account Management</p>
+                        <a href="{{ url_for('jobs_by_category', category='sales') }}" class="btn btn-outline-primary">
+                            Browse Jobs <i class="bi bi-arrow-right ms-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card h-100 text-center category-card">
+                    <div class="card-body">
+                        <img src="{{ url_for('static', filename='img/icons/design.png') }}" alt="Design Jobs" class="category-icon mb-3">
+                        <h5 class="card-title">Design</h5>
+                        <p class="card-text text-muted">UI/UX, Graphic, Product</p>
+                        <a href="{{ url_for('jobs_by_category', category='design') }}" class="btn btn-outline-primary">
+                            Browse Jobs <i class="bi bi-arrow-right ms-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Companies -->
+<section class="py-5 featured-companies">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">Top Companies Hiring</h2>
+            <div class="title-underline"></div>
+            <p class="text-muted mt-3">Work with the most reputable companies in the industry</p>
+        </div>
+        <div class="row g-4 align-items-center justify-content-center">
+            <div class="col-6 col-md-2">
+                <div class="text-center company-logo-wrapper">
+                    <img src="{{ url_for('static', filename='img/logos/amd.png') }}" alt="AMD" class="company-logo">
+                </div>
+            </div>
+            <div class="col-6 col-md-2">
+                <div class="text-center company-logo-wrapper">
+                    <img src="{{ url_for('static', filename='img/logos/freepik.png') }}" alt="Freepik" class="company-logo">
+                </div>
+            </div>
+            <div class="col-6 col-md-2">
+                <div class="text-center company-logo-wrapper">
+                    <img src="{{ url_for('static', filename='img/logos/game-center.png') }}" alt="Game Center" class="company-logo">
+                </div>
+            </div>
+            <div class="col-6 col-md-2">
+                <div class="text-center company-logo-wrapper">
+                    <img src="{{ url_for('static', filename='img/logos/pages.png') }}" alt="Pages" class="company-logo">
+                </div>
+            </div>
+            <div class="col-6 col-md-2">
+                <div class="text-center company-logo-wrapper">
+                    <img src="{{ url_for('static', filename='img/logos/camera-cardboard.png') }}" alt="Camera Cardboard" class="company-logo">
+                </div>
+            </div>
+            <div class="col-6 col-md-2">
+                <div class="text-center company-logo-wrapper">
+                    <img src="{{ url_for('static', filename='img/logos/xing.png') }}" alt="Xing" class="company-logo">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Jobs -->
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">Featured Jobs</h2>
+            <div class="title-underline"></div>
+            <p class="text-muted mt-3">Handpicked opportunities for you</p>
+        </div>
+        <div class="row g-4">
+            {% for job in jobs %}
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <div>
+                                <h5 class="card-title mb-1">{{ job.title }}</h5>
+                                <h6 class="card-subtitle text-muted">{{ job.company }}</h6>
+                            </div>
+                            <span class="badge bg-primary">{{ job.title.split()[0] }}</span>
+                        </div>
+                        <div class="mb-3">
+                            <span class="text-muted me-3">
+                                <i class="bi bi-geo-alt"></i> {{ job.location }}
+                            </span>
+                            {% if job.salary %}
+                            <span class="text-muted">
+                                <i class="bi bi-cash"></i> {{ job.salary }}
+                            </span>
+                            {% endif %}
+                        </div>
+                        <p class="card-text">{{ job.description[:150] }}...</p>
+                        <div class="d-flex justify-content-between align-items-center mt-3">
+                            <small class="text-muted">Posted {{ job.created_at.strftime('%Y-%m-%d') }}</small>
+                            <div class="d-flex gap-2">
+                                <a href="{{ url_for('job_details', job_id=job.id) }}" class="btn btn-outline-primary">
+                                    <i class="bi bi-eye me-1"></i> View Details
+                                </a>
+                                {% if current_user.is_authenticated and current_user.user_type == 'jobseeker' %}
+                                <form action="{{ url_for('apply_job', job_id=job.id) }}" method="POST" class="d-inline">
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="bi bi-send"></i> Apply Now
+                                    </button>
+                                </form>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %} 
