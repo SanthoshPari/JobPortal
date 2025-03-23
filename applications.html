@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block title %}Applications - Job Portal{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <h1 class="mb-4">{% if current_user.user_type == 'jobseeker' %}My Applications{% else %}Job Applications{% endif %}</h1>
+    
+    {% if applications %}
+        {% for application in applications %}
+        <div class="card mb-4">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                        <h5 class="card-title">{{ application.job.title }}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ application.job.company }}</h6>
+                        <p class="card-text">
+                            <small class="text-muted">
+                                <i class="bi bi-geo-alt"></i> {{ application.job.location }}
+                            </small>
+                        </p>
+                        <p class="card-text">{{ application.job.description[:200] }}...</p>
+                        {% if application.job.salary %}
+                        <p class="card-text">
+                            <small class="text-muted">
+                                <i class="bi bi-cash"></i> {{ application.job.salary }}
+                            </small>
+                        </p>
+                        {% endif %}
+                    </div>
+                    <div class="text-end">
+                        <span class="badge {% if application.status == 'pending' %}bg-warning{% elif application.status == 'accepted' %}bg-success{% else %}bg-danger{% endif %} mb-2">
+                            {{ application.status.title() }}
+                        </span>
+                        <p class="text-muted mb-0">
+                            <small>Applied on {{ application.applied_at.strftime('%Y-%m-%d') }}</small>
+                        </p>
+                    </div>
+                </div>
+
+                {% if current_user.user_type == 'employer' %}
+                <div class="mt-3">
+                    <h6>Applicant Information</h6>
+                    <p class="mb-0">Name: {{ application.user.name }}</p>
+                    <p class="mb-0">Email: {{ application.user.email }}</p>
+                    <div class="mt-2">
+                        <form action="#" method="POST" class="d-inline">
+                            <button type="submit" name="action" value="accept" class="btn btn-success btn-sm">
+                                <i class="bi bi-check-circle"></i> Accept
+                            </button>
+                            <button type="submit" name="action" value="reject" class="btn btn-danger btn-sm">
+                                <i class="bi bi-x-circle"></i> Reject
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <div class="alert alert-info">
+            {% if current_user.user_type == 'jobseeker' %}
+                You haven't applied for any jobs yet.
+            {% else %}
+                No applications have been submitted for your job postings yet.
+            {% endif %}
+        </div>
+    {% endif %}
+</div>
+{% endblock %} 

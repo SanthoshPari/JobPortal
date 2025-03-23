@@ -1,0 +1,155 @@
+{% extends "base.html" %}
+
+{% block title %}{{ job.title }} - Job Details{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ url_for('index') }}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{ url_for('jobs_by_category', category=job.title.split()[0].lower()) }}">Jobs</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ job.title }}</li>
+        </ol>
+    </nav>
+
+    <div class="card job-details-card">
+        <div class="card-body">
+            <div class="d-flex justify-content-between align-items-start mb-4">
+                <div>
+                    <h1 class="card-title h2 mb-2">{{ job.title }}</h1>
+                    <h2 class="h5 text-muted mb-3">{{ job.company }}</h2>
+                    <div class="mb-3">
+                        <span class="badge bg-primary me-2">{{ job.title.split()[0] }}</span>
+                        <span class="text-muted me-3">
+                            <i class="bi bi-geo-alt"></i> {{ job.location }}
+                        </span>
+                        {% if job.salary %}
+                        <span class="text-muted">
+                            <i class="bi bi-cash"></i> {{ job.salary }}
+                        </span>
+                        {% endif %}
+                    </div>
+                </div>
+                {% if current_user.is_authenticated and current_user.user_type == 'jobseeker' %}
+                <form action="{{ url_for('apply_job', job_id=job.id) }}" method="POST">
+                    <button type="submit" class="btn btn-primary btn-lg">
+                        <i class="bi bi-send"></i> Apply Now
+                    </button>
+                </form>
+                {% endif %}
+            </div>
+
+            <div class="row">
+                <div class="col-lg-8">
+                    <!-- Job Description -->
+                    <div class="mb-5">
+                        <h3 class="h4 mb-4">Job Description</h3>
+                        <div class="job-description">
+                            {{ job.description|safe }}
+                        </div>
+                    </div>
+
+                    <!-- Requirements -->
+                    <div class="mb-5">
+                        <h3 class="h4 mb-4">Requirements</h3>
+                        <div class="job-requirements">
+                            {{ job.requirements|safe|replace('\n', '<br>')|safe }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <!-- Job Overview -->
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h3 class="h5 mb-4">Job Overview</h3>
+                            <ul class="list-unstyled">
+                                <li class="mb-3">
+                                    <i class="bi bi-calendar me-2"></i>
+                                    Posted: {{ job.created_at.strftime('%Y-%m-%d') }}
+                                </li>
+                                <li class="mb-3">
+                                    <i class="bi bi-building me-2"></i>
+                                    Company: {{ job.company }}
+                                </li>
+                                <li class="mb-3">
+                                    <i class="bi bi-geo-alt me-2"></i>
+                                    Location: {{ job.location }}
+                                </li>
+                                {% if job.salary %}
+                                <li class="mb-3">
+                                    <i class="bi bi-cash me-2"></i>
+                                    Salary: {{ job.salary }}
+                                </li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Share Job -->
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class="h5 mb-4">Share This Job</h3>
+                            <div class="d-flex gap-2">
+                                <a href="#" class="btn btn-outline-primary">
+                                    <i class="bi bi-linkedin"></i>
+                                </a>
+                                <a href="#" class="btn btn-outline-primary">
+                                    <i class="bi bi-twitter"></i>
+                                </a>
+                                <a href="#" class="btn btn-outline-primary">
+                                    <i class="bi bi-facebook"></i>
+                                </a>
+                                <a href="#" class="btn btn-outline-primary">
+                                    <i class="bi bi-envelope"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.job-details-card {
+    border: none;
+    box-shadow: 0 0 20px rgba(0,0,0,0.05);
+    border-radius: 16px;
+}
+
+.job-description, .job-requirements {
+    color: var(--text-muted);
+    line-height: 1.7;
+}
+
+.breadcrumb {
+    margin-bottom: 2rem;
+}
+
+.breadcrumb-item a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.breadcrumb-item a:hover {
+    text-decoration: underline;
+}
+
+.badge {
+    padding: 0.5rem 1rem;
+    font-weight: 500;
+}
+
+.btn-outline-primary {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+}
+</style>
+{% endblock %} 

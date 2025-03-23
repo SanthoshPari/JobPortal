@@ -1,112 +1,79 @@
 # Job Portal
 
-A modern job portal built with Flask, allowing job seekers to find and apply for jobs, and employers to post job listings.
+A modern job portal built with Flask that connects job seekers with employers. Features include user authentication, job posting, job search, and application management.
 
 ## Features
 
-- **User Authentication**
-  - Job seeker and employer registration
-  - Secure login/logout functionality
-  - Role-based access control
-
-- **Job Seeker Features**
-  - Browse job listings
-  - Search jobs by category
-  - Apply for jobs
-  - Track application status
-  - View company profiles
-
-- **Employer Features**
-  - Post job listings
-  - Manage job postings
-  - View applicants
-  - Company profile management
-
-- **General Features**
-  - Modern, responsive design
-  - Category-based job browsing
-  - Company listings
-  - Career advice section
-  - Contact form
+- User Authentication (Job Seekers & Employers)
+- Job Posting & Management
+- Job Search & Filtering
+- Job Applications
+- Company Profiles
+- Responsive Design
+- Modern UI/UX
 
 ## Tech Stack
 
-- Python 3.x
-- Flask
+- Python/Flask
 - SQLAlchemy
-- Flask-Login
-- SQLite
-- Bootstrap 5
-- HTML/CSS
+- HTML5/CSS3
 - JavaScript
+- SQLite Database
 
 ## Setup Instructions
 
 1. Clone the repository:
-   ```bash
-   git clone https://github.com/yourusername/job-portal.git
-   cd job-portal
-   ```
+```bash
+git clone https://github.com/yourusername/job-portal.git
+cd job-portal
+```
 
 2. Create and activate virtual environment:
-   ```bash
-   python -m venv venv
-   # On Windows:
-   .\venv\Scripts\activate
-   # On Unix or MacOS:
-   source venv/bin/activate
-   ```
+```bash
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+```
 
 3. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
+```bash
+pip install -r requirements.txt
+```
 
 4. Initialize the database:
-   ```bash
-   python init_db.py
-   ```
+```bash
+python init_db.py
+```
 
 5. Run the application:
-   ```bash
-   python app.py
-   ```
+```bash
+python app.py
+```
 
-6. Visit http://localhost:5000 in your web browser
+6. Visit `http://localhost:5000` in your browser
 
-## Default Test Account
-
-- **Employer Account**
-  - Email: employer@example.com
-  - Password: password123
+## Default Test Account (Employer)
+- Email: admin@example.com
+- Password: admin123
 
 ## Project Structure
 
 ```
 job-portal/
-├── static/
-│   ├── css/
-│   │   └── style.css
-│   ├── img/
-│   │   ├── hero/
-│   │   ├── icons/
-│   │   └── logos/
-│   └── js/
-│       └── main.js
-├── templates/
-│   ├── base.html
-│   ├── index.html
-│   ├── login.html
-│   ├── register.html
-│   └── ...
-├── app.py
-├── init_db.py
-└── requirements.txt
+├── app.py              # Main application file
+├── init_db.py          # Database initialization
+├── requirements.txt    # Project dependencies
+├── static/            # Static files (CSS, JS, images)
+├── templates/         # HTML templates
+└── instance/          # Database and instance-specific files
 ```
 
 ## Contributing
 
-Feel free to fork this project and submit pull requests with improvements.
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
 ## License
 
